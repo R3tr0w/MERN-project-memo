@@ -26,7 +26,17 @@ const createPost = async (req, res, next) => {
   }
 };
 
+const deletePost = async (req, res, next) => {
+  const { postId } = req.params;
+  try {
+    res.status(200).send(postId);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getPosts,
   createPost,
+  deletePost,
 };
