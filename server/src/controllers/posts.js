@@ -29,7 +29,9 @@ const createPost = async (req, res, next) => {
 const deletePost = async (req, res, next) => {
   const { postId } = req.params;
   try {
-    res.status(200).send(postId);
+    await PostMessage.deleteOne({ _id: postId });
+    const response = await PostMessage.find();
+    res.status(200).send(response);
   } catch (error) {
     next(error);
   }
